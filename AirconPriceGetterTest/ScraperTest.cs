@@ -15,11 +15,11 @@ namespace AirconPriceGetter
         {
             string html = LoadTextResource("sample01.html");
             Scraper sut = new Scraper();
-            string actual = sut.scrap(html);
-            Assert.That(actual, Is.EqualTo("139,000"));
+            string actual = sut.Scrap(html);
+            Assert.That(actual, Is.EqualTo("139000"));
         }
 
-        private string LoadTextResource(string resourceName)
+		private string LoadTextResource(string resourceName)
         {
             string testWorkPath = TestContext.CurrentContext.TestDirectory;
             string resourcePath = testWorkPath + "../../../TestResources/" + resourceName;

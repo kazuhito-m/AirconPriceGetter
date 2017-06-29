@@ -2,21 +2,30 @@
 using AngleSharp.Dom.Html;
 using AngleSharp.Parser.Html;
 using System.Linq;
+using AngleSharp.Dom;
 
 namespace AirconPriceGetter
 {
     public class Scraper
     {
-        public string scrap(string html)
+        public string Scrap(string html)
         {
             HtmlParser parser = new HtmlParser();
             IHtmlDocument doc = parser.Parse(html);
-            String text = doc.QuerySelectorAll("#minPrice")
+            IHtmlCollection<IElement> docByPriceClasses = doc.GetElementsByClassName("price");
+            if (docByPriceClasses.Count() == 0) return "";
+
+            String text = doc.GetElementsByClassName("price")
                 .First()
                 .GetElementsByTagName("span")
                 .First()
                 .TextContent;
-            return text.Replace("\\", "");
+
+            return String.Join("",
+				text.Where(c => char.IsNumber(c))
+    				.Select(c => c.ToString())
+			);
         }
+
     }
 }

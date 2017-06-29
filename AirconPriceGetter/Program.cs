@@ -20,12 +20,18 @@ namespace AirconPriceGetter
 
         public void ScrapingPlices(string filePath, string outPath)
         {
+            Scraper scraper = new Scraper();
+
             List<string> ids = LoadTextFile(filePath);
 
-            ids.Select(i => ToUrl(i))
-               .ToList()
-               .ForEach(i => Console.WriteLine(i));
-        }
+            List<string> prices = ids.Where(id => id.Trim().Count() > 0)
+                .Select(id => ToUrl(id))
+                .Select(url => HtmlBy(url))
+                .Select(html => scraper.Scrap(html))
+				.ToList();
+
+
+       }
 
         public List<string> LoadTextFile(string filePath)
         {
@@ -37,15 +43,17 @@ namespace AirconPriceGetter
 
         public string ToUrl(string id)
         {
-            return String.Format(URL_TEMPLATE, id);
+            string url = String.Format(URL_TEMPLATE, id);
+            return url;
         }
 
-        public  string HtmlBy(string url)
+        public string HtmlBy(string url)
         {
+            Console.WriteLine(url);
             WebClient client = new WebClient();
             byte[] data = client.DownloadData(url);
-            string html = Encoding.UTF8.GetString(data).TrimEnd('\0');
-            return html;
+            string html = Encoding.GetEncoding("Shift_JIS").GetString(data).TrimEnd('\0');
+			return html;
         }
 
     }
