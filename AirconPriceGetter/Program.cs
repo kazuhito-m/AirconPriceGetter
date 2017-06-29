@@ -7,7 +7,7 @@ using System.Net;
 
 namespace AirconPriceGetter
 {
-    class Program
+    public class Program
     {
 
         private const string URL_TEMPLATE = "http://kakaku.com/search_results/{0}/?sort=priceb";
@@ -27,7 +27,7 @@ namespace AirconPriceGetter
                .ForEach(i => Console.WriteLine(i));
         }
 
-        protected internal List<string> LoadTextFile(string filePath)
+        public List<string> LoadTextFile(string filePath)
         {
             StreamReader sr = new StreamReader(filePath, Encoding.GetEncoding("UTF-8"));
             string text = sr.ReadToEnd();
@@ -35,12 +35,12 @@ namespace AirconPriceGetter
             return new List<string>(lines);
         }
 
-        protected internal string ToUrl(string id)
+        public string ToUrl(string id)
         {
             return String.Format(URL_TEMPLATE, id);
         }
 
-        internal string HtmlBy(string url)
+        public  string HtmlBy(string url)
         {
             WebClient client = new WebClient();
             byte[] data = client.DownloadData(url);
