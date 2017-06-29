@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Linq;
+using System.Net;
 
 namespace AirconPriceGetter
 {
@@ -41,7 +42,10 @@ namespace AirconPriceGetter
 
         internal string HtmlBy(string url)
         {
-            throw new NotImplementedException();
+            WebClient client = new WebClient();
+            byte[] data = client.DownloadData(url);
+            string html = Encoding.UTF8.GetString(data).TrimEnd('\0');
+            return html;
         }
 
     }
