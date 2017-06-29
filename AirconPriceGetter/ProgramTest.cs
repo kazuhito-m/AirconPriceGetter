@@ -41,5 +41,15 @@ namespace AirconPriceGetter
 			Assert.That(actual, Is.EqualTo("http://kakaku.com/search_results/SRK56ST2/?sort=priceb"));
 		}
 
+        [Test]
+        public void 指定したURLからHTMLを取得することが出来る() {
+            const string url = "https://google.com";
+            Program sut = new Program();
+
+            string actual = sut.HtmlBy(url);
+
+            Assert.That(actual, Is.Not.Empty);
+        }
+
 	}
 }

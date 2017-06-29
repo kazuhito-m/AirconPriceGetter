@@ -39,7 +39,10 @@ namespace AirconPriceGetter
             return String.Format(URL_TEMPLATE, id);
         }
 
-
+        internal string HtmlBy(string url)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }
