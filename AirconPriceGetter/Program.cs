@@ -28,10 +28,10 @@ namespace AirconPriceGetter
                 .Select(id => ToUrl(id))
                 .Select(url => HtmlBy(url))
                 .Select(html => scraper.Scrap(html))
-				.ToList();
+                .ToList();
 
-
-       }
+            WriteFile(outPath, prices);
+        }
 
         public List<string> LoadTextFile(string filePath)
         {
@@ -52,8 +52,17 @@ namespace AirconPriceGetter
             Console.WriteLine(url);
             WebClient client = new WebClient();
             byte[] data = client.DownloadData(url);
-            string html = Encoding.GetEncoding("Shift_JIS").GetString(data).TrimEnd('\0');
-			return html;
+            string html = Encoding.GetEncoding("Shift_JIS")
+                .GetString(data)
+                .TrimEnd('\0');
+            return html;
+        }
+
+        public void WriteFile(string outPath, List<string> prices)
+        {
+            StreamWriter sw = new StreamWriter(outPath, false, Encoding.UTF8);
+            prices.ForEach(price => sw.WriteLine(price));
+            sw.Close();
         }
 
     }
