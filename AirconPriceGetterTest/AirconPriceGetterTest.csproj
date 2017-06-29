@@ -32,9 +32,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProgramTest.cs" />
+    <Compile Include="ScraperTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="TestResources\id.txt" />
+    <None Include="TestResources\sample01.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AirconPriceGetter\AirconPriceGetter.csproj">
