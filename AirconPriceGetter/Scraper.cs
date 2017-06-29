@@ -15,8 +15,7 @@ namespace AirconPriceGetter
             IHtmlCollection<IElement> docByPriceClasses = doc.GetElementsByClassName("price");
             if (docByPriceClasses.Count() == 0) return "";
 
-            String text = doc.GetElementsByClassName("price")
-                .First()
+            String text = docByPriceClasses.First()
                 .GetElementsByTagName("span")
                 .First()
                 .TextContent;

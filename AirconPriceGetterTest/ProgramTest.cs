@@ -1,8 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 
 namespace AirconPriceGetter
 {
@@ -11,13 +8,13 @@ namespace AirconPriceGetter
     {
 
         [Test]
+        [Ignore("スモークとして作ったものの、外部にHTTP通信するので一旦無効")]
         public void プログラム全体のスモーク()
         {
             string testWorkPath = TestContext.CurrentContext.TestDirectory;
             string[] param = new string[] { testWorkPath + "../../../TestResources/id.txt" };
 
             Program.Main(param);
-            Assert.AreEqual(true, true);
         }
 
         [Test]
