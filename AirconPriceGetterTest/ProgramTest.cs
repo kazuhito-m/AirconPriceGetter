@@ -28,18 +28,19 @@ namespace AirconPriceGetter
             Assert.That(actual[0], Is.EqualTo("SRK56ST2"));
         }
 
-		[Test]
-		public void 指定した文字列をURLに変換出来る()
-		{
-			Program sut = new Program();
+        [Test]
+        public void 指定した文字列をURLに変換出来る()
+        {
+            Program sut = new Program();
 
             string actual = sut.ToUrl("SRK56ST2");
 
-			Assert.That(actual, Is.EqualTo("http://kakaku.com/search_results/SRK56ST2/?sort=priceb"));
-		}
+            Assert.That(actual, Is.EqualTo("http://kakaku.com/search_results/SRK56ST2/?sort=priceb"));
+        }
 
         [Test]
-        public void 指定したURLからHTMLを取得することが出来る() {
+        public void 指定したURLからHTMLを取得することが出来る()
+        {
             const string url = "https://google.com";
             Program sut = new Program();
 
@@ -48,5 +49,5 @@ namespace AirconPriceGetter
             Assert.That(actual, Is.Not.Empty);
         }
 
-	}
+    }
 }

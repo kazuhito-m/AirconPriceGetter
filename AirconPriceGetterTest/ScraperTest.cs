@@ -16,7 +16,7 @@ namespace AirconPriceGetter
             Assert.That(actual, Is.EqualTo("139000"));
         }
 
-		private string LoadTextResource(string resourceName)
+        private string LoadTextResource(string resourceName)
         {
             string testWorkPath = TestContext.CurrentContext.TestDirectory;
             string resourcePath = testWorkPath + "../../../TestResources/" + resourceName;
