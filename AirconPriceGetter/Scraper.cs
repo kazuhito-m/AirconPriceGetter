@@ -21,9 +21,9 @@ namespace AirconPriceGetter
                 .TextContent;
 
             return String.Join("",
-				text.Where(c => char.IsNumber(c))
-    				.Select(c => c.ToString())
-			);
+                text.Where(c => char.IsNumber(c))
+                    .Select(c => c.ToString())
+            );
         }
 
     }

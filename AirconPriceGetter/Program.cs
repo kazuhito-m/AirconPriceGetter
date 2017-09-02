@@ -37,8 +37,9 @@ namespace AirconPriceGetter
         {
             StreamReader sr = new StreamReader(filePath, Encoding.GetEncoding("UTF-8"));
             string text = sr.ReadToEnd();
-            string[] lines = text.Split('\n');
-            return new List<string>(lines);
+            return text.Split('\n')
+                .Select(id => id.Replace("\r", ""))
+                .ToList();
         }
 
         public string ToUrl(string id)
